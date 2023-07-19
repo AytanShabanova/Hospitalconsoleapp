@@ -41,6 +41,7 @@ public class DoctorImpl implements DoctorInter {
        // doctors.stream().sorted().forEach(Doctor::getSalary);
 
 
+
     }
 
     @Override

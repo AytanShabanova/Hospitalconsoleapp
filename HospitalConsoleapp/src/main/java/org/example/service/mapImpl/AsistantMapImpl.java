@@ -5,13 +5,14 @@ import org.example.models.Doctor;
 import org.example.service.inter.AsistantInter;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class AsistantMapImpl implements AsistantInter {
     @Override
     public void addAsistant(Asistant asistant, String finCode) {
         DoctorMapImpl doctorMap = new DoctorMapImpl();
         Doctor doctor = doctorMap.getDoctorByFinCode(finCode);
-        doctor.getAsHasMap().put(finCode,asistant);
+        doctor.getAsistant().add(asistant);
         doctorMap.addDoctor(doctor);
     }
 
@@ -20,7 +21,7 @@ public class AsistantMapImpl implements AsistantInter {
         DoctorMapImpl doctorMap = new DoctorMapImpl();
         Doctor doctor = doctorMap.getDoctorByFinCode(drFinCode);
         Asistant asistant1 = new Asistant();
-        for (Asistant asistant2 :doctor.getAsHasMap().values()) {
+        for (Asistant asistant2 :doctor.getAsistant()) {
             if (asistant2.getFinCode().equals(finCode)) {
                 asistant1 = asistant2;
 
@@ -34,11 +35,11 @@ public class AsistantMapImpl implements AsistantInter {
 
     @Override
     public void sortPrintAsistant() {
-        HashMap<String,Asistant>asistantHashMap;
+        List<Asistant>list ;
         Doctor doctor=new Doctor();
 
-         asistantHashMap= doctor.getAsHasMap();
-        for (Asistant asistant:asistantHashMap.values()) {
+         list= doctor.getAsistant();
+        for (Asistant asistant:list) {
             System.out.println(asistant);
 
         }
